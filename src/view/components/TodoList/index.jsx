@@ -12,7 +12,12 @@ export const TodoList = ({
   focus,
   toggleComplete,
   setFocus
-}) => (
+}) => {
+  const handleClick = () => {
+    setFocus(false);
+    addTask();
+  };
+  return (
   <div className="task__wrapper">
     <h2 className="task-manager__title-top">Task Manager</h2>
     <div className="task-manager">
@@ -29,7 +34,7 @@ export const TodoList = ({
           required
         />
         {focus && (
-          <span onClick={addTask} className="task-manager__button">
+          <span onClick={handleClick} className="task-manager__button">
             Add
           </span>
         )}
@@ -47,7 +52,7 @@ export const TodoList = ({
       </div>
     </div>
   </div>
-);
+)};
 
 TodoList.propTypes = {
   tasks: PropTypes.array.isRequired,
