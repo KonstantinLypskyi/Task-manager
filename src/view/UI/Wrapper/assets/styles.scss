@@ -1,0 +1,10 @@
+@import '~view/variables.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color001;
+    width: 100%;
+    height: 100vh;
+}

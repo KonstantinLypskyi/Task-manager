@@ -1,0 +1,26 @@
+@import '~view/variables';
+
+.task {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: $color004;
+  position: relative;
+  border-bottom: 1px solid $color003;
+  &__checkbox:checked + &__text {
+    text-decoration: line-through;
+    color: $color003;
+  }
+  &__text {
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__date {
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    color: $color003;
+  }
+}
