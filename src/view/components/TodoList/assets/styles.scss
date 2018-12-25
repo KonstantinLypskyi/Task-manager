@@ -17,6 +17,10 @@
   border-radius: 5px;
   padding: 40px 15px 0 15px;
   background: $color002;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
   &__title {
     &-bottom,
     &-top {
@@ -41,13 +45,15 @@
     font-size: 18px;
     font-weight: 600;
     color: $color003;
-    cursor: pointer;
+    pointer-events: none;
   }
   &__field {
     padding-left: 30px;
   }
   &__field:valid + &__button {
     color: $color001;
+    pointer-events: auto;
+    cursor: pointer;
   }
   &__icon,
   &__button {

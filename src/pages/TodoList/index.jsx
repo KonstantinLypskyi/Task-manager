@@ -12,8 +12,9 @@ class TodoList extends Component {
   delay = 60000;
 
   componentDidMount() {
-    if (utils.getCompletedTasks(this.state.tasks).length) {
-      this.deleteTask(utils.getCompletedTasks(this.state.tasks));
+    const completedTasks = utils.getCompletedTasks(this.state.tasks);
+    if (completedTasks.length) {
+      this.deleteTask(completedTasks);
     }
   }
 
@@ -33,9 +34,9 @@ class TodoList extends Component {
   addTask = () => {
     const task = {
       value: this.state.value,
-      date: utils.getDate(),
       id: utils.makeId(),
-      completed: false
+      completed: false,
+      date: '',
     };
     if (this.state.value) {
       this.setState(({ tasks }) => ({ tasks: [...tasks, task], value: '' }));
@@ -45,7 +46,10 @@ class TodoList extends Component {
   deleteTask = key => {
     const tasks = this.state.tasks.filter(task => {
       if (typeof key === 'string') {
-        return task.completed ? task.id !== key : task;
+        if (task.completed) {
+          return task.id !== key;
+        }
+        return task;
       } else {
         return key.indexOf(task.id) < 0;
       }
@@ -56,7 +60,10 @@ class TodoList extends Component {
   toggleComplete = (key, completed) => {
     const tasks = this.state.tasks.map(task => {
       if (key === task.id) {
-        return (task = { ...task, completed: !task.completed });
+        if (completed) {
+          return (task = { ...task, date: utils.getDate(), completed: true })
+        }
+        return (task = { ...task, date: '', completed: false })
       }
       return task;
     });
